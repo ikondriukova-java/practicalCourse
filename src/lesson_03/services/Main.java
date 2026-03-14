@@ -12,7 +12,7 @@ import lesson_03.utilities.PriceCalculator;
 import java.util.List;
 
 public class Main {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
 
         // overloading 
         Location pickup = new Location("Main Street 1", "New York");
@@ -55,22 +55,34 @@ public class Main {
         passenger.requestRide(order);
         System.out.println("Order created: " + order);
 
-        // overloading 
-        double price = PriceCalculator.calculatePrice(order, driver.getVehicle(), 15.0);
-        order.setPrice(price);
-        System.out.println("Price calculated: $" + price);
+        // try/catch 1 
+        try {
+            double price = PriceCalculator.calculatePrice(order, driver.getVehicle(), 15.0);
+            order.setPrice(price);
+            System.out.println("Price calculated: $" + price);
 
-        // polymorphism 3 
-        double priceBlack = PriceCalculator.calculatePrice(order, car2, 15.0);
-        System.out.println("Same trip with UberBlack would cost: $" + priceBlack);
+            // polymorphism 3
+            double priceBlack = PriceCalculator.calculatePrice(order, car2, 15.0);
+            System.out.println("Same trip with UberBlack would cost: $" + priceBlack);
+        } catch (Exception e) {
+            System.out.println("Price error: " + e.getMessage());
+        }
 
-        
-        order.acceptOrder(driver);
-        System.out.println("Order after accept: " + order);
+        // try/catch 2 )
+        try {
+            order.acceptOrder(driver);
+            System.out.println("Order after accept: " + order);
+        } catch (Exception e) {
+            System.out.println("Accept order error: " + e.getMessage());
+        }
 
-        
-        driver.startDriving(order);
-        driver.completeDriving(order);
+        // try/catch 3 
+        try {
+            driver.startDriving(order);
+            driver.completeDriving(order);
+        } catch (Exception e) {
+            System.out.println("Driving error: " + e.getMessage());
+        }
 
        
         passenger.pay(order);
