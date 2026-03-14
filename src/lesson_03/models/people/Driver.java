@@ -3,25 +3,29 @@ import lesson_03.interfaces.IDrive;
 import lesson_03.models.infrastructure.Order;
 import lesson_03.models.vehicles.Vehicle;
 import java.util.LinkedList;
+import java.util.List;
 
 public class Driver extends Employee implements IDrive {
 
     private Double rating;
     private Vehicle vehicle;
-    // LinkedList - good for sequential trip processing (add to end, read from front)
+    private List<String> languages;
+    // LinkedList 
     private LinkedList<Order> tripHistory = new LinkedList<>();
 
     public Driver() {
     }
 
     public Driver(Long id, String firstName, String lastName, String phoneNumber,
-                  String employeeId, Integer yearsOfExperience, Double rating, Vehicle vehicle) {
+                  String employeeId, Integer yearsOfExperience, Double rating,
+                  List<String> languages, Vehicle vehicle) {
         super(id, firstName, lastName, phoneNumber, employeeId, yearsOfExperience);
         this.rating = rating;
+        this.languages = languages;
         this.vehicle = vehicle;
     }
 
-    // overloading - new driver starts with default rating 5.0
+    // overloading 
     public Driver(Long id, String firstName, String lastName, String phoneNumber,
                   String employeeId, Integer yearsOfExperience, Vehicle vehicle) {
         super(id, firstName, lastName, phoneNumber, employeeId, yearsOfExperience);
@@ -75,5 +79,13 @@ public class Driver extends Employee implements IDrive {
 
     public void setVehicle(Vehicle vehicle) {
         this.vehicle = vehicle;
+    }
+
+    public List<String> getLanguages() {
+        return languages;
+    }
+
+    public void setLanguages(List<String> languages) {
+        this.languages = languages;
     }
 }

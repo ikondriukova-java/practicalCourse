@@ -9,6 +9,7 @@ import lesson_03.models.vehicles.UberEats;
 import lesson_03.models.vehicles.UberX;
 import lesson_03.models.vehicles.Vehicle;
 import lesson_03.utilities.PriceCalculator;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) throws Exception {
@@ -43,8 +44,11 @@ public class Main {
         Driver newDriver = new Driver(2L, "Mike", "Johnson", "111222333", "EMP002", 1, car2);
         System.out.println("New driver (default rating): " + newDriver);
 
-        Driver driver = new Driver(1L, "John", "Brown", "987654321", "EMP001", 5, 4.8, car1);
+        Driver driver = new Driver(1L, "John", "Brown", "987654321", "EMP001", 5, 4.8,
+                List.of("English", "Spanish"), car1);
         System.out.println("Driver: " + driver);
+        // List<String>
+        System.out.println("Driver languages: " + driver.getLanguages());
 
         // overloading 
         Order order = new Order(101L, passenger, pickup, destination, "please hurry");
