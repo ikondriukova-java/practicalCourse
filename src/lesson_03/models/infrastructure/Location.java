@@ -8,6 +8,11 @@ public class Location {
         this.address = address;
     }
 
+    // overloading 
+    public Location(String address, String city) {
+        this.address = address + ", " + city;
+    }
+
     public String getAddress() {
         return address;
     }

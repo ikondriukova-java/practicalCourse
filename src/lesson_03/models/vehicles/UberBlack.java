@@ -1,16 +1,16 @@
 package lesson_03.models.vehicles;
 
-public class UberX extends RideVehicle {
+public class UberBlack extends RideVehicle {
 
-    private static final Double PricePerKm = 1.5;
+    private static final Double PricePerKm = 3.0;
 
-    public UberX(Long id, String model, String color) {
+    public UberBlack(Long id, String model, String color) {
         super(id, model, color, 4);
     }
 
     @Override
     public String getVehicleType() {
-        return "UberX";
+        return "UberBlack";
     }
 
     @Override
@@ -20,7 +20,7 @@ public class UberX extends RideVehicle {
 
     @Override
     public String toString() {
-        return "UberX{" +
+        return "UberBlack{" +
                 "model='" + getModel() + '\'' +
                 ", color='" + getColor() + '\'' +
                 ", pricePerKm=$" + PricePerKm +

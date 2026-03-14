@@ -4,7 +4,11 @@ import lesson_03.models.people.Passenger;
 
 public class Order {
 
-    private Long id;
+    // static
+    private static int totalOrders = 0;
+
+    // final 
+    private final Long id;
     private Passenger passenger;
     private Driver driver;
     private Location pickup;
@@ -19,6 +23,17 @@ public class Order {
         pickup = newPickup;
         destination = newDestination;
         status = "CREATED";
+        totalOrders++;
+    }
+
+    public static int getTotalOrders() {
+        return totalOrders;
+    }
+
+    // overloading 
+    public Order(Long newId, Passenger newPassenger, Location newPickup, Location newDestination, String note) {
+        this(newId, newPassenger, newPickup, newDestination);
+        System.out.println("Order note: " + note);
     }
 
     public void acceptOrder(Driver newDriver) throws Exception {
@@ -86,5 +101,14 @@ public class Order {
 
     public void setStatus(String newStatus) {
         status = newStatus;
+    }
+
+    @Override
+    public String toString() {
+        return "Order #" + id +
+                " | from: " + pickup.getAddress() +
+                " to: " + destination.getAddress() +
+                " | status: " + status +
+                " | price: $" + price;
     }
 }
