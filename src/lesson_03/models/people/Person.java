@@ -1,11 +1,16 @@
 package lesson_03.models.people;
 
+import java.util.Objects;
+
 public abstract class Person {
 
     private Long id;
     private String firstName;
     private String lastName;
     private String phoneNumber;
+
+    public Person() {
+    }
 
     public Person(Long id, String firstName, String lastName, String phoneNumber) {
         this.id = id;
@@ -14,17 +19,37 @@ public abstract class Person {
         this.phoneNumber = phoneNumber;
     }
 
+    public abstract String getRole();
+
     @Override
     public String toString() {
         return "Person{" +
                 "id=" + id +
+                ", role='" + getRole() + '\'' +
                 ", name='" + firstName + " " + lastName + '\'' +
                 ", phone='" + phoneNumber + '\'' +
                 '}';
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Person person = (Person) o;
+        if (this.hashCode() != person.hashCode()) return false;
+        return Objects.equals(id, person.id)
+                && Objects.equals(firstName, person.firstName)
+                && Objects.equals(lastName, person.lastName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, firstName, lastName);
+    }
+
     // Getters and Setters
-    public Long getId() {
+    // final 
+    public final Long getId() {
         return id;
     }
 
